@@ -9,12 +9,11 @@ export PATH=$PATH:$HOME/energi3/bin
 #   FROM_EMAIL_ADDR 
 #   NRG_ADDR
 
-echo "From Addr" ${FROM_EMAIL_ADDR}
-
 isRunning=$(energi3 --exec "masternode.masternodeInfo('${NRG_ADDR}')" attach 2>/dev/null | grep -Fq "isActive: true" && echo $?)
 
 isStaking=$(energi3 --exec "miner.stakingStatus()" attach 2>/dev/null | grep -Fq "staking: true" && echo $?)
 
+echo "From Addr" ${FROM_EMAIL_ADDR}
 echo "isRunning is: " ${isRunning}
 echo "isStaking is: " ${isStaking}
 
@@ -36,8 +35,8 @@ fi
 echo $msg
 echo $subj
 
-#send notification
-email_data='{"personalizations": [{"to": [{"email": "'${TO_EMAIL_ADDR}'"}]}],"from": {"email": "'${FROM_EMAIL_ADDR}'"},"subject": "'${subj}'","content": [{"type": "text/plain", "value":"'${msg}'>
+#send notification via Twilo SendGrid
+email_data='{"personalizations": [{"to": [{"email": "'${TO_EMAIL_ADDR}'"}]}],"from": {"email": "'${FROM_EMAIL_ADDR}'"},"subject": "'${subj}'","content": [{"type": "text/plain", "value":"'${msg}'"}]}'
 
 curl --request POST \
     --url https://api.sendgrid.com/v3/mail/send \
