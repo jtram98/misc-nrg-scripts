@@ -29,7 +29,7 @@ elif [[ -n $isStaking ]]; then
 fi
 
 if [[ $msg == "NOT RUNNING" ]]; then
-    subj="${subj} - ${msg}"
+    https://photos.google.com/album/AF1QipNetnl-jwmlSu99Y8kxVC6hpLH6jsGRBn0TLcdI/photo/AF1QipNljmDzupTuAVY-ohDGy2uKU6h91oC9GBtMKbtWsubj="${subj} - ${msg}"
 fi
 
 echo $msg
